@@ -1,0 +1,75 @@
+= Antora Default UI
+// Settings:
+:experimental:
+:hide-uri-scheme:
+// Project URLs:
+:url-project: https://github.com/pcistudio/doc-site-ui
+:current-release: v0
+// :img-ci-status: {url-project}/badges/master/pipeline.svg
+//:url-ci-pipelines: {url-project}/pipelines
+// External URLs:
+:url-antora: https://antora.org
+:url-antora-docs: https://docs.antora.org
+:url-antora-ui: https://gitlab.com/antora/antora-ui-default
+:url-git: https://git-scm.com
+:url-git-dl: {url-git}/downloads
+:url-gulp: http://gulpjs.com
+:url-nodejs: https://nodejs.org
+
+
+
+
+image:{img-ci-status}[CI Status (GitHub CI), link={url-ci-pipelines}]
+
+This project modify the archetype to build UI base documentations for the PCI Studio.
+
+== Use the UI
+
+To use this UI with Antora, add the following configuration to your playbook file:
+
+
+[source,yaml]
+----
+ui:
+  bundle:
+    url: {url-project}/releases/download/{current-release}/ui-bundle.zip
+    snapshot: true
+----
+
+== Build and preview the UI locally
+
+=== Prerequisites
+
+To preview and bundle the default UI, you need the following software on your computer:
+
+* {url-git}[git] (command: `git`)
+* {url-nodejs}[Node.js] (commands: `node` and `npm`)
+* {url-gulp}[Gulp CLI] (command: `gulp`)
+
+
+NOTE: If Need a detail guide of who to build and preview the UI, please refer to the original Antora UI guide. {url-antora-ui}[Antora UI Building Guide]
+
+If you have the prerequisites installed, you can build and preview the UI by following these steps:
+
+1. Clone the repository:
+2. Run this commans
+
+[source,shell]
+----
+npm install
+gulp preview
+----
+
+The `gulp preview` command will build the UI and start a local web server that serves the UI. You can view the UI by opening a web browser and navigating to `https://localhost:5252`.
+
+=== Package for Use with Antora
+
+If you make changes to the UI and want to package it for use with Antora, run the following command:
+
+$ gulp bundle
+
+And then you can see  the generated `ui-bundle.zip` file in the `build` directory.
+
+
+== Learn More
+A more comprehensive tutorial can be found in the documentation at {url-antora-docs}.

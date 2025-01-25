@@ -1,0 +1,4 @@
+{
+  "description": "Build tasks for the Antora pci studio UI project",
+  "flags.tasksDepth": 1
+}
