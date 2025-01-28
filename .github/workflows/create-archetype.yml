@@ -32,18 +32,10 @@ jobs:
           title: "Release v0.${{ github.run_number }}"
           tag: v0.${{ github.run_number }}
           prerelease: true
-      # - name: Upload asset to release
-      #   uses: csexton/release-asset-action@v3
-      #   with:
-      #     file: build/ui-bundle.zip
-      #     github-token: ${{ secrets.GITHUB_TOKEN }}
-      #     release-url: ${{ steps.create_release.outputs.upload_url }}
-      - name: "Upload asset to release"
-        uses: SierraSoftworks/gh-releases@v1.0.7
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          overwrite: 'true'
-          files: |
-            build/ui-bundle.zip
+      - name: Upload to GitHub Release
+        run: |
+          gh release upload v0.${{ github.run_number }} build/ui-bundle.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 
