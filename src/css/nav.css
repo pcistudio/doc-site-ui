@@ -99,7 +99,7 @@
 }
 
 @media screen and (max-width: 1024px) {
-  .navbar-brand img.navbar-item{
+  .navbar-brand img.navbar-item {
     /* I need the image take the size of the container */
     max-width: 100%;
     max-height: 50px; /* Adjust the height as needed */
@@ -107,7 +107,6 @@
     width: auto;
   }
 }
-
 
 .nav-menu-toggle {
   background: transparent url(../img/octicons-16.svg#view-unfold) no-repeat center / 100% 100%;
