@@ -31,5 +31,10 @@ jobs:
           title: "Release v0.${{ github.run_number }}"
           tag: v0.${{ github.run_number }}
           prerelease: true
-  
+      - uses: Shopify/upload-to-release@v1
+        with:
+          name: site.zip
+          path: build/ui-bundle.zip
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          content-type: application/zip
 
