@@ -3,7 +3,7 @@ on:
   push:
     branches:
       - main
-      - release/v0
+      - prerelease
 jobs:
   build:
     permissions:
