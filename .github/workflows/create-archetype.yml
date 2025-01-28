@@ -31,11 +31,10 @@ jobs:
           title: "Release v0.${{ github.run_number }}"
           tag: v0.${{ github.run_number }}
           prerelease: true
-      - name: Upload Release Asset
-        uses: Shopify/upload-to-release@v2
+      - name: Upload asset to release
+        uses: csexton/release-asset-action@v3
         with:
-          name: site.zip
-          path: build/ui-bundle.zip
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-          content-type: application/zip
+          file: build/ui-bundle.zip
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
 
