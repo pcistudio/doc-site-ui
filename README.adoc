@@ -17,9 +17,7 @@
 :url-nodejs: https://nodejs.org
 
 
-
-
-image:{img-ci-status}[CI Status (GitHub CI), link={url-ci-pipelines}]
+image:https://github.com/pcistudio/doc-site-ui/actions/workflows/create-archetype.yml/badge.svg["Build Arcora Archetype", link=https://github.com/pcistudio/doc-site-ui/actions/workflows/create-archetype.yml]
 
 This project modify the archetype to build UI base documentations for the PCI Studio.
 
