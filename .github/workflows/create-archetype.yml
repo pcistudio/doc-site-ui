@@ -3,7 +3,9 @@ on:
   push:
     branches:
       - main
-      - prerelease
+      - develop
+env:
+  RELEASE_VERSION: v0.${{ github.run_number }}
 jobs:
   build:
     permissions:
@@ -23,15 +25,26 @@ jobs:
       - name: Create ui-bundle.zip
         run: SOURCEMAPS=true gulp bundle
       
-      - name: Create a Release
-        id: create_release
-        uses: elgohr/Github-Release-Action@v5
+      # - name: Create a Release
+      #   id: create_release
+      #   uses: elgohr/Github-Release-Action@v5
+      #   env:
+      #     GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #   with:
+      #     title: "Release ${{ env.RELEASE_VERSION }}"
+      #     tag: ${{ env.RELEASE_VERSION }}
+      #     prerelease: true
+      - name: Create a PreRelease
+        if: ${{ github.ref_name == 'develop' }}
+        run: gh release create ${{ env.RELEASE_VERSION }} -t "PreRelease v0.${{ github.run_number }}" --generate-notes
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          title: "Release v0.${{ github.run_number }}"
-          tag: v0.${{ github.run_number }}
-          prerelease: true
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Create a Release
+        if: ${{ github.ref_name == 'main' }}
+        run: gh release create ${{ env.RELEASE_VERSION }} -t "Release v0.${{ github.run_number }}" --generate-notes
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Upload to GitHub Release
         run: |
           gh release upload v0.${{ github.run_number }} build/ui-bundle.zip
