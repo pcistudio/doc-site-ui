@@ -1,4 +1,4 @@
-= Antora Default UI
+= Antora Default UI image:https://github.com/pcistudio/doc-site-ui/actions/workflows/create-archetype.yml/badge.svg["Build Arcora Archetype", link=https://github.com/pcistudio/doc-site-ui/actions/workflows/create-archetype.yml]
 // Settings:
 :experimental:
 :hide-uri-scheme:
@@ -16,12 +16,7 @@
 :url-gulp: http://gulpjs.com
 :url-nodejs: https://nodejs.org
 
-
-
-
-image:{img-ci-status}[CI Status (GitHub CI), link={url-ci-pipelines}]
-
-This project modify the archetype to build UI base documentations for the PCI Studio.
+This project modify the Antora archetype, to build documentations for PCI Studio.
 
 == Use the UI
 

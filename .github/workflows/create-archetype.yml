@@ -1,0 +1,44 @@
+name: Build Arcora Archetype
+on:
+  push:
+    branches:
+      - main
+      - develop
+env:
+  RELEASE_VERSION: v0.${{ github.run_number }}
+jobs:
+  build:
+    permissions:
+      contents: write
+      packages: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Node.js 10
+        uses: actions/setup-node@v4
+        with:
+          node-version: '10'
+      - name: Add Gulp
+        run: npm install -g gulp-cli
+      - name: Install dependencies
+        run: npm install
+      - name: Create ui-bundle.zip
+        run: SOURCEMAPS=true gulp bundle
+      - name: Create a PreRelease
+        if: ${{ github.ref_name == 'develop' }}
+        run: gh release create ${{ env.RELEASE_VERSION }} -t "PreRelease v0.${{ github.run_number }}" --generate-notes
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Create a Release
+        if: ${{ github.ref_name == 'main' }}
+        run: gh release create ${{ env.RELEASE_VERSION }} -t "Release v0.${{ github.run_number }}" --generate-notes
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload to GitHub Release
+        run: |
+          gh release upload v0.${{ github.run_number }} build/ui-bundle.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+
