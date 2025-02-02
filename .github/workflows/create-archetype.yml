@@ -42,10 +42,11 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   sync-develop:
+    if: ${{ github.ref_name == 'main' }}
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - name:
+      - name: Sync Develop
         uses: pcistudio/actions/sync-develop@v1
         with:
             main-branch: main
