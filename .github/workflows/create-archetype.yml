@@ -51,6 +51,6 @@ jobs:
         with:
             main-branch: main
             develop-branch: develop
-            ssh-key: ${{ secrets.SYNC_SSH_PRIVATE_KEY }}
+            ssh-key: ${{ secrets.SSH_PRIVATE_KEY }}
             user-email: "release-bot"
             user-name: "pcistudio360@gmail.com"
