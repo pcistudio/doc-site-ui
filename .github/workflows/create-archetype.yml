@@ -41,4 +41,16 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-
+  sync-develop:
+    if: ${{ github.ref_name == 'main' }}
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Sync Develop
+        uses: pcistudio/actions/sync-develop@v1
+        with:
+            main-branch: main
+            develop-branch: develop
+            ssh-key: ${{ secrets.SYNC_SSH_PRIVATE_KEY }}
+            user-email: "release-bot"
+            user-name: "pcistudio360@gmail.com"
