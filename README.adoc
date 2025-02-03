@@ -4,7 +4,7 @@
 :hide-uri-scheme:
 // Project URLs:
 :url-project: https://github.com/pcistudio/doc-site-ui
-:current-release: v0
+:current-release: v0.22
 // :img-ci-status: {url-project}/badges/master/pipeline.svg
 //:url-ci-pipelines: {url-project}/pipelines
 // External URLs:
@@ -30,6 +30,7 @@ ui:
     url: {url-project}/releases/download/{current-release}/ui-bundle.zip
     snapshot: true
 ----
+NOTE: {url-project}/releases/download/{current-release}/ui-bundle.zip
 
 == Build and preview the UI locally
 
