@@ -46,11 +46,17 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
+      - name: Check SSH Key Generation
+        uses: pcistudio/actions/ssh-gen@v1
+        with:
+          ssh-key-name: 'SSH_PRIVATE_KEY_TEMP'
+          user-email: ${{ vars.RELEASE_EMAIL }}
+          token: ${{ secrets.GIT_ADMIN_PAT }}
       - name: Sync Develop
         uses: pcistudio/actions/sync-develop@v1
         with:
             main-branch: main
             develop-branch: develop
-            ssh-key: ${{ secrets.SSH_PRIVATE_KEY }}
+            ssh-key: ${{ secrets.SSH_PRIVATE_KEY_TEMP }}
             user-email: "release-bot"
             user-name: "pcistudio360@gmail.com"
