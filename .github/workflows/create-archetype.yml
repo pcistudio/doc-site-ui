@@ -60,5 +60,3 @@ jobs:
             ssh-key: ${{ secrets.SSH_PRIVATE_KEY_TEMP }}
             user-email: "release-bot"
             user-name: "pcistudio360@gmail.com"
-
-            
