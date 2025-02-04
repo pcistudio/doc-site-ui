@@ -4,6 +4,10 @@ on:
     branches:
       - main
       - develop
+  pull_request:
+    branches:
+      - main
+      - develop
 env:
   RELEASE_VERSION: v0.${{ github.run_number }}
 jobs:
@@ -42,7 +46,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   sync-develop:
-    if: ${{ github.ref_name == 'main' }}
+    if: ${{ github.ref_name == 'main' && github.event_name == 'push' }}
     needs: build
     runs-on: ubuntu-latest
     steps:
