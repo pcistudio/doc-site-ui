@@ -51,6 +51,6 @@
     "require-from-string": "~2.0",
     "stylelint": "~13.3",
     "stylelint-config-standard": "~20.0",
-    "vinyl-fs": "~3.0"
+    "vinyl-fs": "~4.0"
   }
 }
