@@ -55,7 +55,7 @@ module.exports = (src, dest, preview) => () => {
     autoprefixer,
     preview
       ? () => {}
-      : (css, result) => cssnano({ preset: 'default' })(css, result).then(() => postcssPseudoElementFixer(css, result)),
+      : (css, result) => cssnano({ preset: 'default' }),
   ]
 
   return merge(
@@ -130,8 +130,8 @@ function bundle ({ base: basedir, ext: bundleExt = '.bundle.js' }) {
   })
 }
 
-function postcssPseudoElementFixer (css, result) {
-  css.walkRules(/(?:^|[^:]):(?:before|after)/, (rule) => {
-    rule.selector = rule.selectors.map((it) => it.replace(/(^|[^:]):(before|after)$/, '$1::$2')).join(',')
-  })
-}
+// function postcssPseudoElementFixer (css, result) {
+//   css.walkRules(/(?:^|[^:]):(?:before|after)/, (rule) => {
+//     rule.selector = rule.selectors.map((it) => it.replace(/(^|[^:]):(before|after)$/, '$1::$2')).join(',')
+//   })
+// }
