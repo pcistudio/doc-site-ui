@@ -39,7 +39,7 @@ jobs:
         run: ls build/ui-bundle.zip
       - name: Create a PreRelease
         if: ${{ github.ref_name == 'develop' }}
-        run: gh release create ${{ env.RELEASE_VERSION }} -t "PreRelease v0.${{ github.run_number }}" --generate-notes
+        run: gh release create ${{ env.RELEASE_VERSION }} -t "PreRelease v0.${{ github.run_number }}" --generate-notes --prerelease
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Create a Release
