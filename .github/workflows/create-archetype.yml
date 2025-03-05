@@ -22,12 +22,21 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '10'
+      - name: Cache dependencies
+        uses: actions/cache@v4
+        with:
+          path: node_modules
+          key: node-modules-${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            node-modules-${{ runner.os }}-
       - name: Add Gulp
         run: npm install -g gulp-cli
       - name: Install dependencies
         run: npm install
       - name: Create ui-bundle.zip
         run: SOURCEMAPS=true gulp bundle
+      - name: check if ui-bundle.zip exists
+        run: ls build/ui-bundle.zip
       - name: Create a PreRelease
         if: ${{ github.ref_name == 'develop' }}
         run: gh release create ${{ env.RELEASE_VERSION }} -t "PreRelease v0.${{ github.run_number }}" --generate-notes
@@ -40,8 +49,9 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Upload to GitHub Release
+        if: ${{ github.ref_name == 'develop' || github.ref_name == 'main' }}
         run: |
-          gh release upload v0.${{ github.run_number }} build/ui-bundle.zip
+          gh release upload ${{ env.RELEASE_VERSION }} build/ui-bundle.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
