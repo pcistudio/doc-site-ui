@@ -1,8 +1,9 @@
+/* stylelint-disable selector-class-pattern */
 body.-toc aside.toc.sidebar {
   display: none;
 }
 
-@media screen and (max-width: 1023.5px) {
+@media screen and (width <= 1023.5px) {
   aside.toc.sidebar {
     display: none;
   }
@@ -12,7 +13,7 @@ body.-toc aside.toc.sidebar {
   }
 }
 
-@media screen and (min-width: 1024px) {
+@media screen and (width >= 1024px) {
   main {
     flex: auto;
     min-width: 0; /* min-width: 0 required for flexbox to constrain overflowing elements */
@@ -32,8 +33,8 @@ body.-toc aside.toc.sidebar {
   }
 }
 
-@media screen and (min-width: 1216px) {
+@media screen and (width >= 1216px) {
   aside.toc.sidebar {
-    flex-basis: var(--toc-width--widescreen);
+    flex-basis: var(--toc-width-widescreen);
   }
 }
