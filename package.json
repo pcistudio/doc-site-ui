@@ -18,7 +18,7 @@
     "@fontsource/roboto": "~5.2",
     "@fontsource/roboto-mono": "~5.2",
     "@asciidoctor/tabs": "latest",
-    "@octokit/rest": "20.1.2",
+    "@octokit/rest": "21.1.1",
     "@ronilaukkarinen/gulp-stylelint": "^14.1.1",
     "asciidoctor": "3.0.4",
     "autoprefixer": "10.4.20",
